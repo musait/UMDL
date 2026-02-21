@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U Mercatu di Lupinu - Épicerie & Rôtisserie</title>
+    <style>
+        :root {
+            --primary: #FF9F1C; /* Orange Rôtisserie */
+            --secondary: #2EC4B6; /* Vert Primeur */
+            --dark: #1B1B1E; /* Fond Nuit */
+            --darker: #121214;
+            --light: #F7F7F9;
+            --text-muted: #A0A0A5;
+            --gradient: linear-gradient(135deg, #FF9F1C 0%, #FF5E1C 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Header / Hero --- */
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: 
+                linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('https://images.unsplash.com/photo-1516684669134-de6d7c47743b?q=80&w=1920&auto=format&fit=crop'); /* Image Rôtisserie/Food */
+            background-size: cover;
+            background-position: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, var(--dark), transparent);
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 159, 28, 0.3);
+        }
+
+        /* --- Sections Communes --- */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- Grid Cards (Concept) --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--darker);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+        }
+
+        /* --- Chiffres Clés (Banque/Investisseur) --- */
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            text-align: center;
+            background: var(--darker);
+            padding: 3rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- Porteur de Projet --- */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-img {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000&auto=format&fit=crop'); /* Placeholder image pro */
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            box-shadow: 20px 20px 0px rgba(255, 159, 28, 0.1);
+        }
+
+        .profile-content {
+            flex: 1.5;
+            min-width: 300px;
+        }
+
+        .profile-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50px;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--darker);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .address {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .profile-section { flex-direction: column; }
+            .profile-img { width: 100%; height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Header -->
+    <header>
+        <div class="hero-content">
+            <h1>U Mercatu di Lupinu</h1>
+            <p class="subtitle">Épicerie de Nuit • Rôtisserie • Primeur • Bastia Sud</p>
+            <a href="#concept" class="cta-btn">Découvrir le Projet</a>
+        </div>
+    </header>
+
+    <!-- Concept Section -->
+<section id="concept">
+        <h2>Le Concept Hybride</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">🍗</div>
+                <h3>Rôtisserie Traditionnelle</h3>
+                <p>Moteur de marge du week-end. Poulets rôtis de qualité (12€), cuits sur place. Une odeur attractive qui capte tout le quartier.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🌙</div>
+                <h3>Épicerie de Nuit</h3>
+                <p>Ouvert de 11h à 23h. Le seul point de dépannage premium du secteur quand tout est fermé. Produits de niche et essentiels.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🥗</div>
+                <h3>Primeur & Frais</h3>
+                <p>Expertise de 10 ans dans les produits frais. Sélection circuits courts, qualité supérieure à la grande distribution.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📦</div>
+                <h3>Services & Flux</h3>
+                <p>Point Relais Colis (30-50 visites/jour) + Livraison Uber Eats. Une stratégie digitale pour maximiser le trafic.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chiffres Clés (Investisseurs) -->
+    <section id="chiffres">
+        <h2>La Solidité du Modèle</h2>
+        <p style="text-align: center; color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem auto;">
+            Un modèle économique sécurisé par des charges fixes exceptionnellement basses et une double compétence de gestion.
+        </p>
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3>500 €</h3>
+                <p>Loyer Mensuel (Exceptionnel)</p>
+            </div>
+            <div class="stat-item">
+                <h3>50%</h3>
+                <p>Marge Brute Moyenne</p>
+            </div>
+            <div class="stat-item">
+                <h3>174 K€</h3>
+                <p>CA Prévisionnel Annuel</p>
+            </div>
+            <div class="stat-item">
+                <h3>11h - 23h</h3>
+                <p>Amplitude Horaire Stratégique</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Porteur de Projet -->
+    <section id="equipe">
+        <h2>Le Porteur de Projet</h2>
+        <div class="profile-section">
+            <div class="profile-img"></div>
+            <div class="profile-content">
+                <h3>Ait Ouayhou Mustapha</h3>
+                <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; color: white;">
+                    Une double expertise rare : Commerçant & Développeur
+                </p>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+                    Alliant 10 ans d'expérience terrain dans le secteur primeur (gestion, achat, vente) à une solide formation en contrôle de gestion (EDHEC) et 5 ans de développement informatique.
+                </p>
+                
+                <div style="margin-bottom: 1rem;">
+                    <span class="tag">BBA EDHEC Audit/Gestion</span>
+                    <span class="tag">Expertise Produits Frais</span>
+                    <span class="tag">Développeur Fullstack</span>
+                    <span class="tag">Stratégie SEO & Uber Eats</span>
+                </div>
+
+                <p style="border-left: 3px solid var(--primary); padding-left: 1rem; color: white; font-style: italic;">
+                    "Mon objectif : Apporter la rigueur de la gestion financière et la puissance des outils digitaux au commerce de proximité traditionnel."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Localisation / Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>U Mercatu di Lupinu</h3>
+            <p class="address">📍 9, Rue Jean-Pierre Gaffory, 20600 Bastia (Lupino)</p>
+<div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                <a href="#" class="cta-btn" style="padding: 0.8rem 2rem; font-size: 0.9rem;">Dossier Complet</a>
+                <a href="#" class="cta-btn" style="background: transparent; border: 1px solid white; padding: 0.8rem 2rem; font-size: 0.9rem;">Nous Contacter</a>
+            </div>
+            <p style="margin-top: 3rem; font-size: 0.8rem; color: #555;">© 2026 SARL GF ANGELI & Associés - Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple reveal animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Apply animation to cards
+        document.querySelectorAll('.card').forEach((el, index) => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = `all 0.6s ease-out ${index * 0.1}s`; // Staggered delay
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
+
