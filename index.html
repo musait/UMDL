@@ -6,13 +6,14 @@
     <title>U Mercatu di Lupinu - Épicerie & Rôtisserie</title>
     <style>
         :root {
-            --primary: #FF9F1C; /* Orange Rôtisserie */
-            --secondary: #2EC4B6; /* Vert Primeur */
-            --dark: #1B1B1E; /* Fond Nuit */
-            --darker: #121214;
-            --light: #F7F7F9;
-            --text-muted: #A0A0A5;
-            --gradient: linear-gradient(135deg, #FF9F1C 0%, #FF5E1C 100%);
+            /* Palette ajustée : Plus "Food & Premium" */
+            --primary: #FF8C00; /* Orange Rôtisserie vif */
+            --secondary: #4CAF50; /* Vert Primeur Frais */
+            --bg-dark: #1A1A2E; /* Fond Bleu Nuit Profond (moins dur que le noir) */
+            --card-bg: #16213E; /* Fond des cartes légèrement plus clair */
+            --text-main: #EAEAEA;
+            --text-muted: #B0B0C0;
+            --accent-gradient: linear-gradient(135deg, #FF8C00 0%, #FF4500 100%);
         }
 
         * {
@@ -23,8 +24,8 @@
         }
 
         body {
-            background-color: var(--dark);
-            color: var(--light);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -36,53 +37,47 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            /* Image de fond un peu plus lumineuse */
             background: 
-                linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-                url('https://images.unsplash.com/photo-1516684669134-de6d7c47743b?q=80&w=1920&auto=format&fit=crop'); /* Image Rôtisserie/Food */
+                linear-gradient(rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.7)),
+                url('https://images.unsplash.com/photo-1516684669134-de6d7c47743b?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             padding: 2rem;
             position: relative;
         }
 
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(to top, var(--dark), transparent);
-        }
-
         .hero-content {
             z-index: 2;
-            max-width: 800px;
+            max-width: 900px;
             animation: fadeIn 1s ease-out;
         }
 
         h1 {
-            font-size: 4rem;
+            font-size: 4.5rem; /* Titre un peu plus gros */
             font-weight: 800;
             margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: -2px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: white;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        h1 span {
+            color: var(--primary); /* Met en valeur "U Mercatu" */
         }
 
         .subtitle {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--text-muted);
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             font-weight: 300;
         }
 
         .cta-btn {
             display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--gradient);
+            padding: 1rem 3rem;
+            background: var(--accent-gradient);
             color: white;
             text-decoration: none;
             font-weight: bold;
@@ -92,101 +87,114 @@
             letter-spacing: 1px;
             border: none;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
         }
 
         .cta-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 159, 28, 0.3);
+            box-shadow: 0 10px 25px rgba(255, 140, 0, 0.5);
         }
 
         /* --- Sections Communes --- */
         section {
-            padding: 5rem 2rem;
+            padding: 6rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+            font-size: 2.8rem;
+            margin-bottom: 4rem;
             text-align: center;
             color: white;
             position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
         }
 
         h2::after {
             content: '';
             display: block;
-            width: 60px;
+            width: 80px;
             height: 4px;
             background: var(--primary);
-            margin: 10px auto 0;
+            margin: 15px auto 0;
             border-radius: 2px;
         }
 
-        /* --- Grid Cards (Concept) --- */
+        /* --- Grid Cards (Modifiée : Centrée) --- */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
         }
 
         .card {
-            background: var(--darker);
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.3s, border-color 0.3s;
+            background: var(--card-bg);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center; /* TEXTE CENTRÉ ICI */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             border-color: var(--primary);
         }
 
         .card-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
             color: var(--primary);
+            display: inline-block; /* Pour bien centrer l'emoji/icone */
+            background: rgba(255, 255, 255, 0.05);
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
         }
 
         .card h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 1rem;
+            color: white;
         }
 
         .card p {
             color: var(--text-muted);
+            font-size: 1.05rem;
         }
 
-        /* --- Chiffres Clés (Banque/Investisseur) --- */
+        /* --- Chiffres Clés (Style "Badge") --- */
         .stats-container {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
             gap: 2rem;
             text-align: center;
-            background: var(--darker);
-            padding: 3rem;
-            border-radius: 20px;
+            background: linear-gradient(145deg, #1f2a48, #16213E);
+            padding: 4rem;
+            border-radius: 30px;
             margin-top: 2rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
         }
 
         .stat-item h3 {
-            font-size: 3rem;
-            color: var(--primary);
+            font-size: 3.5rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
+            font-weight: 800;
         }
 
         .stat-item p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text-muted);
             text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            font-weight: 600;
         }
 
         /* --- Porteur de Projet --- */
@@ -194,72 +202,103 @@
             display: flex;
             align-items: center;
             gap: 4rem;
-            flex-wrap: wrap;
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.03);
         }
 
         .profile-img {
             flex: 1;
             min-width: 300px;
             height: 400px;
-            background: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000&auto=format&fit=crop'); /* Placeholder image pro */
+            /* Image de profil (placeholder) */
+            background: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             border-radius: 20px;
-            box-shadow: 20px 20px 0px rgba(255, 159, 28, 0.1);
+            /* Petit effet graphique */
+            box-shadow: -20px 20px 0px rgba(76, 175, 80, 0.2); /* Ombre verte pour rappeler le côté frais */
         }
 
         .profile-content {
             flex: 1.5;
-            min-width: 300px;
         }
 
         .profile-content h3 {
+            color: white;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-role {
             color: var(--primary);
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
         }
 
         .tag {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(255,255,255,0.1);
+            padding: 0.6rem 1.2rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 50px;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
             font-size: 0.9rem;
-            color: var(--secondary);
+            color: var(--secondary); /* Vert */
+            font-weight: 600;
+        }
+
+        .quote {
+            border-left: 4px solid var(--primary);
+            padding-left: 1.5rem;
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 1.1rem;
         }
 
         /* --- Footer --- */
         footer {
-            background: var(--darker);
-            padding: 4rem 2rem;
+            background: #0f172a; /* Très sombre pour le pied de page */
+            padding: 5rem 2rem;
             text-align: center;
             border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         .footer-content h3 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: var(--primary);
+            color: white;
         }
+        
+        .footer-content span { color: var(--primary); }
 
         .address {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
             color: var(--text-muted);
         }
 
         /* --- Animations --- */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         /* --- Responsive --- */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .profile-section { flex-direction: column; }
-            .profile-img { width: 100%; height: 300px; }
+        @media (max-width: 900px) {
+            h1 { font-size: 3rem; }
+            .profile-section { flex-direction: column; text-align: center; }
+            .profile-img { width: 100%; height: 350px; box-shadow: none; margin-bottom: 2rem; }
+            .quote { border-left: none; border-top: 4px solid var(--primary); padding-left: 0; padding-top: 1.5rem; }
+            .tag-container { justify-content: center; }
         }
     </style>
 </head>
@@ -268,14 +307,14 @@
     <!-- Hero Header -->
     <header>
         <div class="hero-content">
-            <h1>U Mercatu di Lupinu</h1>
+            <h1><span>U Mercatu</span> di Lupinu</h1>
             <p class="subtitle">Épicerie de Nuit • Rôtisserie • Primeur • Bastia Sud</p>
             <a href="#concept" class="cta-btn">Découvrir le Projet</a>
         </div>
     </header>
 
     <!-- Concept Section -->
-<section id="concept">
+    <section id="concept">
         <h2>Le Concept Hybride</h2>
         <div class="grid">
             <div class="card">
@@ -304,13 +343,13 @@
     <!-- Chiffres Clés (Investisseurs) -->
     <section id="chiffres">
         <h2>La Solidité du Modèle</h2>
-        <p style="text-align: center; color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem auto;">
+        <p style="text-align: center; color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto; font-size: 1.1rem;">
             Un modèle économique sécurisé par des charges fixes exceptionnellement basses et une double compétence de gestion.
         </p>
         <div class="stats-container">
             <div class="stat-item">
                 <h3>500 €</h3>
-                <p>Loyer Mensuel (Exceptionnel)</p>
+                <p>Loyer Mensuel</p>
             </div>
             <div class="stat-item">
                 <h3>50%</h3>
@@ -322,7 +361,7 @@
             </div>
             <div class="stat-item">
                 <h3>11h - 23h</h3>
-                <p>Amplitude Horaire Stratégique</p>
+                <p>Amplitude Horaire</p>
             </div>
         </div>
     </section>
@@ -334,23 +373,22 @@
             <div class="profile-img"></div>
             <div class="profile-content">
                 <h3>Ait Ouayhou Mustapha</h3>
-                <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; color: white;">
-                    Une double expertise rare : Commerçant & Développeur
-                </p>
-                <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
-                    Alliant 10 ans d'expérience terrain dans le secteur primeur (gestion, achat, vente) à une solide formation en contrôle de gestion (EDHEC) et 5 ans de développement informatique.
-                </p>
+                <span class="profile-role">Commerçant Expert & Développeur</span>
                 
-                <div style="margin-bottom: 1rem;">
+                <div class="tag-container">
                     <span class="tag">BBA EDHEC Audit/Gestion</span>
                     <span class="tag">Expertise Produits Frais</span>
                     <span class="tag">Développeur Fullstack</span>
                     <span class="tag">Stratégie SEO & Uber Eats</span>
                 </div>
 
-                <p style="border-left: 3px solid var(--primary); padding-left: 1rem; color: white; font-style: italic;">
-                    "Mon objectif : Apporter la rigueur de la gestion financière et la puissance des outils digitaux au commerce de proximité traditionnel."
+                <p style="margin-bottom: 2rem; color: var(--text-muted); font-size: 1.1rem;">
+                    Alliant 10 ans d'expérience terrain dans le secteur primeur (gestion, achat, vente) à une solide formation en contrôle de gestion (EDHEC) et 5 ans de développement informatique.
                 </p>
+
+                <div class="quote">
+                    "Mon objectif : Apporter la rigueur de la gestion financière et la puissance des outils digitaux au commerce de proximité traditionnel."
+                </div>
             </div>
         </div>
     </section>
@@ -358,18 +396,18 @@
     <!-- Localisation / Footer -->
     <footer>
         <div class="footer-content">
-            <h3>U Mercatu di Lupinu</h3>
+            <h3><span>U Mercatu</span> di Lupinu</h3>
             <p class="address">📍 9, Rue Jean-Pierre Gaffory, 20600 Bastia (Lupino)</p>
-<div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
-                <a href="#" class="cta-btn" style="padding: 0.8rem 2rem; font-size: 0.9rem;">Dossier Complet</a>
-                <a href="#" class="cta-btn" style="background: transparent; border: 1px solid white; padding: 0.8rem 2rem; font-size: 0.9rem;">Nous Contacter</a>
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
+                <a href="#" class="cta-btn" style="padding: 1rem 2.5rem; font-size: 0.9rem;">Télécharger le Dossier</a>
+                <a href="#" class="cta-btn" style="background: transparent; border: 2px solid rgba(255,255,255,0.2); padding: 1rem 2.5rem; font-size: 0.9rem; box-shadow: none;">Nous Contacter</a>
             </div>
-            <p style="margin-top: 3rem; font-size: 0.8rem; color: #555;">© 2026 SAS UMDL & Associés - Tous droits réservés.</p>
+            <p style="margin-top: 4rem; font-size: 0.8rem; color: #555;">© 2026 SARL GF ANGELI & Associés - Tous droits réservés.</p>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for anchor links
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -379,7 +417,7 @@
             });
         });
 
-        // Simple reveal animation on scroll
+        // Simple reveal animation
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -389,15 +427,13 @@
             });
         });
 
-        // Apply animation to cards
-        document.querySelectorAll('.card').forEach((el, index) => {
+        document.querySelectorAll('.card, .stat-item, .profile-section').forEach((el, index) => {
             el.style.opacity = 0;
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = `all 0.6s ease-out ${index * 0.1}s`; // Staggered delay
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = `all 0.8s cubic-bezier(0.5, 0, 0, 1) ${index * 0.1}s`;
             observer.observe(el);
         });
     </script>
 
 </body>
 </html>
-
